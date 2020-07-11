@@ -1,0 +1,29 @@
+version: '3.1'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_webfunny_container
+    restart: always
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    command:
+      [
+        'mysqld',
+        '--character-set-server=utf8',
+        '--collation-server=utf8_general_ci',
+      ]
+    environment:
+      MYSQL_ROOT_PASSWORD: sb19890430
+      MYSQL_PASSWORD: sb19890430
+      MYSQL_DATABASE: webfunny_db
+    ports:
+      - '3306:3306'
+  server:
+    container_name: server_container
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      -8010:8010
+      -8011:8011
