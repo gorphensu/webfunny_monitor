@@ -5,6 +5,9 @@ services:
     build:
       context: ./
       dockerfile: ./Mysql_Dockerfile
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
     ports: -3306:3306
   server:
     container_name: webfunny_server_container
