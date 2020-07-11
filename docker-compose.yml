@@ -8,11 +8,13 @@ services:
     volumes:
       - ./mysql/conf.d:/etc/mysql/conf.d
       - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
-    ports: -3306:3306
+    ports:
+      - 3306:3306
   server:
     container_name: webfunny_server_container
     build:
       context: ./
       dockerfile: ./Dockerfile
-    ports: -8010:8010
-      -8011:8011
+    ports:
+      - 8010:8010
+      - 8011:8011
